@@ -2,7 +2,7 @@
 
 require('parser.php');
 
-define('BOT_TOKEN', 'SEU TOKEN');
+define('BOT_TOKEN', '1946698638:AAFYoGL1j85v_thS7YwIHJ3Kspzal_qeepI');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function processMessage($message) {
