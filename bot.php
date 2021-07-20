@@ -1,13 +1,9 @@
 <?php
 
-require('parser.php');
-
 define('BOT_TOKEN', '1946698638:AAFYoGL1j85v_thS7YwIHJ3Kspzal_qeepI');
 define('API_URL', 'https://api.telegram.org/bot' . BOT_TOKEN . '/');
 
-function processMessage($message)
-{
-  // processa a mensagem recebida
+function processMessage($message){  // processa a mensagem recebida
   $message_id = $message['message_id'];
   $chat_id = $message['chat']['id'];
   if (isset($message['text'])) {
@@ -16,12 +12,12 @@ function processMessage($message)
 
     if (strpos($text, "/start") === 0) {
       //envia a mensagem ao usuário
-      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Olá, ' . $message['from']['first_name'] .
-        '!', 'reply_markup' => array(
+      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Olá, @' . $message['from']['username'] .
+        ' !', 'reply_markup' => array(
         'keyboard' => array(array('Geelpa', 'Cristian'), array('Igor', 'Enzo')),
-        'one_time_keyboard' => true
+        'one_time_keyboard' => true, 'selective' => true
       )));
-    } else if (strpos($text, "Enzo")) {
+    } else if ($text == "Enzo") {
       sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'O cristian finge que não vê TikTok, mas ele canta todas as musiquinhas.'));
     } else {
       sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas não entendi essa mensagem. :('));
@@ -31,8 +27,7 @@ function processMessage($message)
   }
 }
 
-function sendMessage($method, $parameters)
-{
+function sendMessage($method, $parameters) {
   $options = array(
     'http' => array(
       'method'  => 'POST',
