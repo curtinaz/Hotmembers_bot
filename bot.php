@@ -21,6 +21,8 @@ function processMessage($message)
         'keyboard' => array(array('Geelpa', 'Cristian'), array('Igor', 'Enzo')),
         'one_time_keyboard' => true
       )));
+    } else if (strpos($text, "Enzo")) {
+      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'O cristian finge que não vê TikTok, mas ele canta todas as musiquinhas.'));
     } else {
       sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas não entendi essa mensagem. :('));
     }
